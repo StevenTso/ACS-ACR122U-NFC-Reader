@@ -108,7 +108,7 @@ if __name__ == "__main__":
 			if "-" in page:
 				start = int(page.split("-")[0])
 				end = int(page.split("-")[1])
-				for new_page in xrange(start, end):
+				for new_page in xrange(start, end+1):
 					readTag(new_page)
 			else:
 				readTag(page)
