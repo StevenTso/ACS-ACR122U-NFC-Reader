@@ -42,7 +42,6 @@ def stringParser(dataCurr):
 		return dataCurr
 
 def readTag(page):
-	while(1):
 		try:
 			connection = reader.createConnection()
 			status_connection = connection.connect()
@@ -54,12 +53,9 @@ def readTag(page):
 			#only allows new tags to be worked so no duplicates
 			if(dataCurr is not None):
 				print dataCurr
-				break
 			else:
 				print "Something went wrong. Page " + str(page)
-				break
-		except Exception, e:
-			continue
+		except Exception,e: print str(e)
 
 def writeTag(page, value):
 	if type(value) != str:
