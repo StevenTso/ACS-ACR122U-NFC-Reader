@@ -39,6 +39,8 @@ def stringParser(dataCurr):
         return dataCurr
 
 def readTag(page):
+    readingLoop = 1
+    while(readingLoop):
         try:
             connection = reader.createConnection()
             status_connection = connection.connect()
@@ -50,9 +52,17 @@ def readTag(page):
             #only allows new tags to be worked so no duplicates
             if(dataCurr is not None):
                 print dataCurr
+                break
             else:
                 print "Something went wrong. Page " + str(page)
-        except Exception,e: print str(e)
+                break
+        except Exception,e: 
+            if(waiting_for_beacon ==1):
+                continue
+            else:
+                readingLoop=0
+                print str(e)
+                break
 
 def writeTag(page, value):
     if type(value) != str:
@@ -80,6 +90,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Read / write NFC tags')
     usingreader_group = parser.add_argument_group('usingreader')
     usingreader_group.add_argument('--usingreader', nargs=1, metavar='READER_ID', help='Reader to use [0-X], default is 0')
+    wait_group = parser.add_argument_group('wait')
+    wait_group.add_argument('--wait', nargs=1, metavar='0|1', help='Wait for beacon before returns [0|1], default is 1')
     read_group = parser.add_argument_group('read')
     read_group.add_argument('--read', nargs='+', help='Pages to read. Can be a x-x range, or list of pages')
     write_group = parser.add_argument_group('write')
@@ -97,6 +109,18 @@ if __name__ == "__main__":
             reader = r[0]
     else:
         reader = r[0]
+
+    print "Using:", reader
+
+    #Disabling wait for answer if wait == 0
+    if args.wait:
+        wait = args.wait[0]
+        if (int(wait) == 0 ):
+            waiting_for_beacon = 0
+        else:
+            waiting_for_beacon = 1
+    else:
+        waiting_for_beacon = 1
 
     print "Using:", reader
 
