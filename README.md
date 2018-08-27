@@ -21,6 +21,17 @@ python NFCReader.py
 
 ```
 
+Update (August 2018)
+--------------
+
+Hi everyone! I am ecstatic to soon push out a much-needed update to this project! Recently, I've been experimenting with simpler ways to read to NFC and also write to NFC that works on both Windows and Mac and has a more extensive list of features. I'm currently opening up the new project to a select few users (limited spots) before a general release (TBD).
+
+Sign up below:
+[tagrightlabs.com](https://tagrightlabs.com)
+
+Also please don't hesitate to reach out directly to me at [contact@tagrightlabs.com](mailto:contact@tagrightlabs.com)
+
+Thank you in advance!
 
 License
 ----
